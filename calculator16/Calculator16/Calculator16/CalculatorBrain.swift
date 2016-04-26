@@ -19,25 +19,27 @@ class CalculatorBrain{
     
     var operations: Dictionary<String, Operation> = [
         "π": Operation.Constant(M_PI),
-        "e": Operation.Constant(M_E)
+        "e": Operation.Constant(M_E),
+        "√": Operation.UnaryOperation(sqrt)
+//        "×": Operation.BinaryOperation( $0 * $1)
     ]
     
 
     
     enum Operation {
         case Constant(Double)
-        case UnaryOperation(Double -> Double)
-        case BinaryOperation
+        case UnaryOperation((Double) -> Double)
+        case BinaryOperation((Double,Double) -> Double)
         case Equals
     }
     
     func performOperation(symbol: String) {
         if let operation = operations[symbol]{
             switch operation {
-            case .Constant(let value): accumulator = value
-            
-            default:
-                break
+            case .Constant(let associatedConstantValue): accumulator = associatedConstantValue
+            case .UnaryOperation(let associatedFunction): accumulator = associatedFunction(accumulator)
+            case .BinaryOperation: break
+            case .Equals:break
             }
         }
     }
@@ -47,5 +49,4 @@ class CalculatorBrain{
             return accumulator
         }
     }
-    
 }
