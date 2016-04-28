@@ -28,7 +28,7 @@ class CalculatorBrain{
         "×": Operation.BinaryOperation(multiply)
     ]
     
-
+    
     
     enum Operation {
         case Constant(Double)
@@ -43,10 +43,10 @@ class CalculatorBrain{
             case .Constant(let associatedConstantValue): accumulator = associatedConstantValue
             case .UnaryOperation(let associatedFunction): accumulator = associatedFunction(accumulator)
             case .BinaryOperation(let associatedFunction): pending = PendingBinaryOperationInfo(binaryFunction: associatedFunction, firstOperand: accumulator)
-            case .Equals:break
-            if pending != nil{
-                accumulator = pending!.binaryFunction(pending.firstOperand, accumulator)
-                pending = nil
+            case .Equals:
+                if pending != nil{
+                    
+                    pending = nil
                 }
             }
         }
