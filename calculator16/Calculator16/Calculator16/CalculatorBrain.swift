@@ -45,6 +45,7 @@ class CalculatorBrain{
             case .BinaryOperation(let associatedFunction): pending = PendingBinaryOperationInfo(binaryFunction: associatedFunction, firstOperand: accumulator)
             case .Equals:
                 if pending != nil{
+
                     
                     pending = nil
                 }
