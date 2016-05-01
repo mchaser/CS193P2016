@@ -30,6 +30,7 @@ class CalculatorBrain{
     
     
     
+    
     enum Operation {
         case Constant(Double)
         case UnaryOperation((Double) -> Double)
